@@ -3,9 +3,20 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material/react-button": "^0.15.0",
+    "@types/classnames": "^2.2.9",
+    "@types/node": "^12.12.7",
+    "@types/react": "^16.9.11",
+    "@types/react-dom": "^16.9.4",
+    "eslint-plugin-react-hooks": "^1.7.0--peer",
+    "firebase": "^7.3.0",
+    "node-sass": "^4.13.0",
+    "prop-types": "^15.7.2",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
-    "react-scripts": "3.2.0"
+    "react-scripts": "^3.2.0",
+    "react-with-firebase-auth": "^1.1.0",
+    "typescript": "^3.7.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -33,7 +44,10 @@
     "eslint-config-airbnb": "^18.0.1",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-react": "^7.16.0",
-    "eslint-plugin-react-hooks": "^2.2.0"
+    "eslint-plugin-react": "^7.16.0"
+  },
+  "peerDependencies": {
+    "eslint-plugin-react-hooks": "^2.2.0",
+    "typescript": ">=2.8.0"
   }
 }
