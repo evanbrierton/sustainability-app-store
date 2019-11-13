@@ -1,14 +1,21 @@
 import React from 'react';
-import withFirebaseAuth from 'react-with-firebase-auth';
-import * as firebase from 'firebase/app';
-import 'firebase/auth';
 import { func, shape, string } from 'prop-types';
-import Button from '@material/react-button';
+import { createMuiTheme, responsiveFontSizes, ThemeProvider } from '@material-ui/core/styles';
 
-import '../../assets/SASS/index.scss';
+import * as firebase from 'firebase/app';
+import withFirebaseAuth from 'react-with-firebase-auth';
+import 'firebase/auth';
 import firebaseConfig from '../../firebaseConfig';
+
+import 'typeface-roboto';
 import logo from '../../assets/images/logo.svg';
 import './App.css';
+
+import Navbar from '../navbar';
+import Login from '../login';
+import Main from '../main';
+
+const theme = responsiveFontSizes(createMuiTheme({ palette: { primary: { main: '#09d3ac' } } }));
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 const firebaseAppAuth = firebaseApp.auth();
@@ -17,25 +24,15 @@ const providers = { googleProvider: new firebase.auth.GoogleAuthProvider() };
 
 const App = ({ user, signOut, signInWithGoogle }) => (
   <div className="App">
-    <header className="App-header">
+    <ThemeProvider theme={theme}>
+      <Navbar user={user} signOut={signOut} />
       <img src={logo} className="App-logo" alt="logo" />
-      {user ? (
-        <p>
-          Hello,
-          {' '}
-          {user.displayName}
-        </p>
-      ) : <p>Please sign in.</p>}
-      {user ? (
-        <Button outlined onClick={signOut} className="button-alternate">
-          Sign Out
-        </Button>
-      ) : (
-        <Button outlined onClick={signInWithGoogle} className="button-alternate">
-          Sign in With Google
-        </Button>
-      )}
-    </header>
+      {
+        user
+          ? <Main />
+          : <Login user={user} signInWithGoogle={signInWithGoogle} />
+        }
+    </ThemeProvider>
   </div>
 );
 
