@@ -2,7 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { string, func, shape } from 'prop-types';
 import {
-  AppBar, Toolbar, Button, Typography, Avatar, makeStyles,
+  AppBar, Toolbar, Button, Typography, Avatar, Menu, MenuItem, makeStyles,
 } from '@material-ui/core';
 
 import './Navbar.css';
@@ -13,14 +13,21 @@ const Navbar = ({ user, signOut, history }) => {
       toolbar: {
         justifyContent: 'space-between',
         padding: '0.5em 24px',
-        // minHeight: 64,
-        // alignItems: 'flex-start',
-        // paddingTop: '0.5em',
-        // paddingBottom: '2em',
       },
       margin: { margin: '0 1em' },
     }),
   )();
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   return (
     <nav className="Navbar">
@@ -32,14 +39,44 @@ const Navbar = ({ user, signOut, history }) => {
           {user && (
             <Toolbar>
               <Typography variant="caption" color="textSecondary">{user.displayName}</Typography>
-              <Avatar src={user ? user.photoURL : ''} className={margin} />
-              <Button onClick={() => {
+              <Button
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleMenu}
+              >
+                <Avatar src={user ? user.photoURL : ''} className={margin} />
+              </Button>
+              {/* <Button onClick={() => {
                 signOut();
                 setTimeout(() => history.push('/login'), 100);
               }}
               >
                 Sign Out
-              </Button>
+              </Button> */}
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={open}
+                onClose={handleClose}
+              >
+                <MenuItem onClick={() => {
+                  signOut();
+                  setTimeout(() => history.push('/login'), 100);
+                }}
+                >
+                  Sign Out
+                </MenuItem>
+              </Menu>
             </Toolbar>
           )}
         </Toolbar>

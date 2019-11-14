@@ -10,7 +10,6 @@ const Login = ({ signInWithGoogle, history, user }) => (
     {user && history.push('/')}
     <Eco color="primary" fontSize="large" />
     <p>Welcome to the Sustainability App Store</p>
-    <p>Please sign in</p>
     <Button variant="outlined" color="primary" onClick={signInWithGoogle}>
       Sign in With Google
     </Button>

@@ -8,7 +8,7 @@ const Appcard = ({
   name, description, image, link,
 }) => {
   const { card, media } = makeStyles({
-    card: { maxWidth: 345 }, media: { maxWidth: '100%', height: 'auto' },
+    card: { maxWidth: '20vw' }, media: { maxWidth: '100%', height: 'auto' },
   })();
 
   return (
