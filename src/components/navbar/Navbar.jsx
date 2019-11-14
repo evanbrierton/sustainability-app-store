@@ -28,7 +28,6 @@ const Navbar = ({ user, signOut }) => {
           <Typography variant="h6" color="textSecondary">
             Sustainability App Store
           </Typography>
-          {console.log(user)}
           {user && (
             <Toolbar>
               <Typography variant="caption" color="textSecondary">{user.displayName}</Typography>
@@ -43,7 +42,7 @@ const Navbar = ({ user, signOut }) => {
 };
 
 Navbar.propTypes = {
-  user: shape({ displayName: string, email: string }), signOut: func.isRequired,
+  user: shape({ displayName: string, photoURL: string }), signOut: func.isRequired,
 };
 Navbar.defaultProps = { user: null };
 

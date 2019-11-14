@@ -1,14 +1,54 @@
-import React from 'react';
-import { Switch, Route, withRouter } from 'react-router-dom';
+import React, { Component } from 'react';
+import { func, shape } from 'prop-types';
+import { Switch, Route } from 'react-router-dom';
 
+import Login from '../login';
 import Featured from '../../routes';
 
-const Main = () => (
-  <main>
-    <Switch>
-      <Route exact path="/" render={Featured} />
-    </Switch>
-  </main>
-);
+class Main extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { apps: [] };
+  }
 
-export default withRouter(Main);
+  componentDidMount = () => {
+    const { db, user, history } = this.props;
+    db.collection('apps').get().then((querySnapshot) => {
+      querySnapshot.forEach(
+        (doc) => this.setState(
+          (state) => ({ apps: [...state.apps, { id: doc.id, ...doc.data() }] }),
+        ),
+      );
+    });
+    if (!user) history.push('login');
+  }
+
+  render = () => {
+    const { state: { apps }, props: { user, signInWithGoogle, history } } = this;
+    return (
+      <main>
+        <Switch>
+          <Route exact path="/" render={() => <Featured apps={apps} />} />
+          <Route
+            exact
+            path="/login"
+            render={
+              () => <Login user={user} history={history} signInWithGoogle={signInWithGoogle} />
+            }
+          />
+        </Switch>
+      </main>
+    );
+  }
+}
+
+Main.propTypes = {
+  db: shape({ collection: func }).isRequired,
+  user: shape({}),
+  signInWithGoogle: func.isRequired,
+  history: shape({ push: func }).isRequired,
+};
+
+Main.defaultProps = { user: null };
+
+export default Main;

@@ -1,27 +1,38 @@
 import React from 'react';
+import { arrayOf, shape, string } from 'prop-types';
 import { Grid, Typography } from '@material-ui/core';
 
 import Appcard from '../../components/appcard';
 
-const Featured = () => (
+const Featured = ({ apps }) => (
   <section className="Featured">
     <Typography variant="h2">
       Featured Apps
     </Typography>
     <hr />
-    <Grid container justify="center" spacing="5">
-      {Array(4).fill().map(() => (
-        <Grid item xs="3">
+    <Grid container justify="center" spacing={5}>
+      {apps.map(({
+        id, name, description, image, link,
+      }) => (
+        <Grid item xs={3} key={id}>
           <Appcard
-            name="Ecosia"
-            description="Ecosia uses the profit they make from your searches to plant trees where they are needed most. Get the free browser extension and plant trees with every search."
-            img="https://pbs.twimg.com/profile_images/1097529058278158339/FiqTujWY_400x400.png"
-            link="https://info.ecosia.org/"
+            name={name}
+            description={description}
+            image={image}
+            link={link}
           />
         </Grid>
       ))}
     </Grid>
   </section>
 );
+
+Featured.propTypes = {
+  apps: arrayOf(
+    shape({
+      id: string, name: string, description: string, img: string, link: string,
+    }),
+  ).isRequired,
+};
 
 export default Featured;

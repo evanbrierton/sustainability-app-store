@@ -1,11 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { func, shape, string } from 'prop-types';
+import { func, shape } from 'prop-types';
 import { ThemeProvider } from '@material-ui/core/styles';
 
 import * as firebase from 'firebase/app';
-import withFirebaseAuth from 'react-with-firebase-auth';
 import 'firebase/auth';
+import 'firebase/firestore';
+import withFirebaseAuth from 'react-with-firebase-auth';
 import firebaseConfig from '../../firebaseConfig';
 
 import 'typeface-roboto';
@@ -14,11 +15,11 @@ import theme from '../../assets/theme';
 
 
 import Navbar from '../navbar';
-import Login from '../login';
 import Main from '../main';
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 const firebaseAppAuth = firebaseApp.auth();
+const db = firebaseApp.firestore();
 
 const providers = { googleProvider: new firebase.auth.GoogleAuthProvider() };
 
@@ -26,17 +27,13 @@ const App = ({ user, signOut, signInWithGoogle }) => (
   <div className="App">
     <ThemeProvider theme={theme}>
       <Navbar user={user} signOut={signOut} />
-      {
-        user
-          ? <Router><Main /></Router>
-          : <Login user={user} signInWithGoogle={signInWithGoogle} />
-        }
+      <Router><Main db={db} user={user} signInWithGoogle={signInWithGoogle} /></Router>
     </ThemeProvider>
   </div>
 );
 
 App.propTypes = {
-  user: shape({ displayName: string, email: string }),
+  user: shape({}),
   signOut: func.isRequired,
   signInWithGoogle: func.isRequired,
 };

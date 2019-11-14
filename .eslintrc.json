@@ -4,6 +4,7 @@
         "es6": true,
         "jasmine": true
     },
+    "parser": "babel-eslint",
     "extends": [
         "airbnb"
     ],

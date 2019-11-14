@@ -5,7 +5,7 @@ import {
 } from '@material-ui/core';
 
 const Appcard = ({
-  name, description, img, link,
+  name, description, image, link,
 }) => {
   const { card, media } = makeStyles({
     card: { maxWidth: 345 }, media: { maxWidth: '100%', height: 'auto' },
@@ -19,7 +19,7 @@ const Appcard = ({
             component="img"
             alt={name}
             height="140"
-            image={img}
+            image={image}
             title={name}
             className={media}
           />
@@ -37,7 +37,6 @@ const Appcard = ({
         <Button size="small" color="primary">
           Share
         </Button>
-        {console.log(link)}
         <Button size="small" color="primary" href={link}>
           Learn More
         </Button>
@@ -49,7 +48,7 @@ const Appcard = ({
 Appcard.propTypes = {
   name: string.isRequired,
   description: string.isRequired,
-  img: string.isRequired,
+  image: string.isRequired,
   link: string.isRequired,
 };
 
