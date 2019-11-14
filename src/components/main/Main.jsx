@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { func, shape } from 'prop-types';
-import { Switch, Route } from 'react-router-dom';
+import { withRouter, Switch, Route } from 'react-router-dom';
 
 import Login from '../login';
 import Featured from '../../routes';
@@ -51,4 +51,4 @@ Main.propTypes = {
 
 Main.defaultProps = { user: null };
 
-export default Main;
+export default withRouter(Main);

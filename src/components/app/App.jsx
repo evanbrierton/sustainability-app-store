@@ -26,8 +26,10 @@ const providers = { googleProvider: new firebase.auth.GoogleAuthProvider() };
 const App = ({ user, signOut, signInWithGoogle }) => (
   <div className="App">
     <ThemeProvider theme={theme}>
-      <Navbar user={user} signOut={signOut} />
-      <Router><Main db={db} user={user} signInWithGoogle={signInWithGoogle} /></Router>
+      <Router>
+        <Navbar user={user} signOut={signOut} />
+        <Main db={db} user={user} signInWithGoogle={signInWithGoogle} />
+      </Router>
     </ThemeProvider>
   </div>
 );

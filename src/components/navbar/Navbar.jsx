@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import { string, func, shape } from 'prop-types';
 import {
   AppBar, Toolbar, Button, Typography, Avatar, makeStyles,
@@ -6,7 +7,7 @@ import {
 
 import './Navbar.css';
 
-const Navbar = ({ user, signOut }) => {
+const Navbar = ({ user, signOut, history }) => {
   const { toolbar, margin } = makeStyles(
     () => ({
       toolbar: {
@@ -32,7 +33,13 @@ const Navbar = ({ user, signOut }) => {
             <Toolbar>
               <Typography variant="caption" color="textSecondary">{user.displayName}</Typography>
               <Avatar src={user ? user.photoURL : ''} className={margin} />
-              <Button onClick={signOut}>Sign Out</Button>
+              <Button onClick={() => {
+                signOut();
+                setTimeout(() => history.push('/login'), 100);
+              }}
+              >
+                Sign Out
+              </Button>
             </Toolbar>
           )}
         </Toolbar>
@@ -42,8 +49,10 @@ const Navbar = ({ user, signOut }) => {
 };
 
 Navbar.propTypes = {
-  user: shape({ displayName: string, photoURL: string }), signOut: func.isRequired,
+  user: shape({ displayName: string, photoURL: string }),
+  signOut: func.isRequired,
+  history: shape({ push: func }).isRequired,
 };
 Navbar.defaultProps = { user: null };
 
-export default Navbar;
+export default withRouter(Navbar);
