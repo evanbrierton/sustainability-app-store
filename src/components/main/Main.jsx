@@ -12,7 +12,7 @@ class Main extends Component {
   }
 
   componentDidMount = () => {
-    const { db, user, history } = this.props;
+    const { db } = this.props;
     db.collection('apps').get().then((querySnapshot) => {
       querySnapshot.forEach(
         (doc) => this.setState(
@@ -20,7 +20,6 @@ class Main extends Component {
         ),
       );
     });
-    if (!user) history.push('login');
   }
 
   render = () => {

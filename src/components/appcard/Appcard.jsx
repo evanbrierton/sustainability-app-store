@@ -7,8 +7,10 @@ import {
 const Appcard = ({
   name, description, image, link,
 }) => {
-  const { card, media } = makeStyles({
-    card: { maxWidth: '20vw' }, media: { maxWidth: '100%', height: 'auto' },
+  const { card, media, content } = makeStyles({
+    // card: { maxWidth: '20vw' },
+    media: { maxWidth: '100%', height: '20rem' },
+    content: { height: '15rem' },
   })();
 
   return (
@@ -25,7 +27,7 @@ const Appcard = ({
           />
         </a>
       </CardActionArea>
-      <CardContent>
+      <CardContent height="200" className={content}>
         <Typography gutterBottom variant="h5" component="h2">
           {name}
         </Typography>

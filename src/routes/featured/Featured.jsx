@@ -14,7 +14,7 @@ const Featured = ({ apps }) => (
       {apps.map(({
         id, name, description, image, link,
       }) => (
-        <Grid item xs={3} key={id}>
+        <Grid item xs={12} sm={6} md={4} lg={3} key={id}>
           <Appcard
             name={name}
             description={description}

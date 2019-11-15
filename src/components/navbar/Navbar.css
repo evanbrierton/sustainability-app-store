@@ -3,3 +3,8 @@
   width: 100vw;
   color: white;
 }
+
+.NavLink {
+  text-decoration: none;
+  color: white;
+}
