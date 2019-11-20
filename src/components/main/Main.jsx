@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { func, shape } from 'prop-types';
 import { withRouter, Switch, Route } from 'react-router-dom';
 
-import Login from '../login';
-import Featured from '../../routes';
+import { Login, Featured, AppList } from '../../routes';
 
 class Main extends Component {
   constructor(props) {
@@ -27,7 +26,7 @@ class Main extends Component {
     return (
       <main>
         <Switch>
-          <Route exact path="/" render={() => <Featured apps={apps} />} />
+          <Route exact path="/" render={() => <Featured apps={apps.slice(0, 4)} />} />
           <Route
             exact
             path="/login"
@@ -35,6 +34,7 @@ class Main extends Component {
               () => <Login user={user} history={history} signInWithGoogle={signInWithGoogle} />
             }
           />
+          <Route exact path="/apps" render={AppList} />
         </Switch>
       </main>
     );
