@@ -7,7 +7,7 @@ import { createMuiTheme } from '@material-ui/core/styles';
 // Bone: #D9E3C8
 
 const palette = {
-  primary: { main: '#09d3ac' },
+  primary: { main: '#018762' },
   secondary: { main: '#81C784' },
   text: {
     primary: '#282c34',

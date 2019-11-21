@@ -18,7 +18,11 @@ const LargeAppcard = ({
         <h4 style={{ fontSize: '2rem', textAlign: 'left' }}>{name}</h4>
         <div align="left"><RatingBar /></div>
         <p style={{ fontSize: '1.5rem', textAlign: 'left' }}>{description}</p>
-        <div style={{ textAlign: 'left' }}><Link target="_blank" href={link}>Learn More</Link></div>
+        <div style={{ textAlign: 'left' }}>
+          <Link target="_blank" rel="noopener noreferrer" href={link}>
+            {`Find out more about ${name}`}
+          </Link>
+        </div>
       </Grid>
     </Grid>
     <hr style={{ margin: '3rem 0' }} />

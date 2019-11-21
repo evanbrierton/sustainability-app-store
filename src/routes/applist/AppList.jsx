@@ -1,23 +1,20 @@
 import React from 'react';
 import { arrayOf, shape, string } from 'prop-types';
-import { List } from '@material-ui/core';
 import { Appcard } from '../../components';
 
 const AppList = ({ apps }) => (
   <section>
-    <List>
-      {apps.map(({
-        id, name, description, image, link,
-      }) => (
-        <Appcard
-          app={{
-            name, description, image, link,
-          }}
-          size="large"
-          key={id}
-        />
-      ))}
-    </List>
+    {apps.map(({
+      id, name, description, image, link,
+    }) => (
+      <Appcard
+        app={{
+          name, description, image, link,
+        }}
+        size="large"
+        key={id}
+      />
+    ))}
   </section>
 );
 

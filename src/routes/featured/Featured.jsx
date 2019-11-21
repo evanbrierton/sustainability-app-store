@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { arrayOf, shape, string } from 'prop-types';
 import { Grid, Typography } from '@material-ui/core';
 
+import './Featured.css';
 import { Appcard } from '../../components';
 
 const Featured = ({ apps }) => (

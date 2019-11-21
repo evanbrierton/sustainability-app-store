@@ -17,7 +17,7 @@ const SmallAppcard = ({
   return (
     <Card raised className={card}>
       <CardActionArea>
-        <a href={link}>
+        <a href={link} target="_blank" rel="noopener noreferrer">
           <CardMedia
             component="img"
             alt={name}
@@ -37,11 +37,8 @@ const SmallAppcard = ({
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small" color="primary">
-          Share
-        </Button>
-        <Button size="small" color="primary" href={link}>
-          Learn More
+        <Button size="small" color="primary" href={link} target="_blank" rel="noopener noreferrer">
+          See More
         </Button>
       </CardActions>
     </Card>
