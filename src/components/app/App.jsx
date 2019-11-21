@@ -13,9 +13,7 @@ import 'typeface-roboto';
 import './App.css';
 import theme from '../../assets/theme';
 
-
-import Navbar from '../navbar';
-import Main from '../main';
+import { Navbar, Main } from '..';
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 const firebaseAppAuth = firebaseApp.auth();

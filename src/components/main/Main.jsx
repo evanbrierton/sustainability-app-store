@@ -34,7 +34,7 @@ class Main extends Component {
               () => <Login user={user} history={history} signInWithGoogle={signInWithGoogle} />
             }
           />
-          <Route exact path="/apps" render={AppList} />
+          <Route exact path="/apps" render={() => <AppList apps={apps} />} />
         </Switch>
       </main>
     );
