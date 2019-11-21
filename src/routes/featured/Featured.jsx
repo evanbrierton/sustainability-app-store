@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { arrayOf, shape, string } from 'prop-types';
-import { Grid, Typography, Link as LinkStyler } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 
 import { Appcard } from '../../components';
 
@@ -25,7 +25,7 @@ const Featured = ({ apps }) => (
       ))}
     </Grid>
     <div style={{ margin: '3rem 0' }}>
-      <Link to="/apps" style={{ textDecoration: 'none' }}><LinkStyler>See More Apps</LinkStyler></Link>
+      <Link to="/apps" className="Link">See More Apps</Link>
     </div>
   </section>
 );

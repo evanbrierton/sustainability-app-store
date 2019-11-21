@@ -6,7 +6,6 @@ import { Appcard } from '../../components';
 const AppList = ({ apps }) => (
   <section>
     <List>
-      {console.log(apps)}
       {apps.map(({
         id, name, description, image, link,
       }) => (
