@@ -2,6 +2,8 @@ import React from 'react';
 import { string, shape } from 'prop-types';
 import { Grid, Link } from '@material-ui/core';
 
+import { RatingBar } from '..';
+
 const LargeAppcard = ({
   app: {
     name, description, image, link,
@@ -14,6 +16,7 @@ const LargeAppcard = ({
       </Grid>
       <Grid item xs={9}>
         <h4 style={{ fontSize: '2rem', textAlign: 'left' }}>{name}</h4>
+        <div align="left"><RatingBar /></div>
         <p style={{ fontSize: '1.5rem', textAlign: 'left' }}>{description}</p>
         <div style={{ textAlign: 'left' }}><Link target="_blank" href={link}>Learn More</Link></div>
       </Grid>

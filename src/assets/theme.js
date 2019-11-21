@@ -17,3 +17,4 @@ const palette = {
 const themeName = 'Caribbean Green De York Death Adder';
 
 export default createMuiTheme({ palette, themeName });
+export { palette };
