@@ -21,8 +21,18 @@ class Main extends Component {
     });
   }
 
+  updateRating = (rating, id) => {
+    const { db } = this.props;
+    db.collection('apps').doc(id).set({ rating }, { merge: true });
+    // this.setState({ userRating: rating });
+  }
+
   render = () => {
-    const { state: { apps }, props: { user, signInWithGoogle, history } } = this;
+    const {
+      state: { apps }, props: {
+        user, signInWithGoogle, history, db,
+      },
+    } = this;
     return (
       <main>
         <Switch>
@@ -34,7 +44,7 @@ class Main extends Component {
               () => <Login user={user} history={history} signInWithGoogle={signInWithGoogle} />
             }
           />
-          <Route exact path="/apps" render={() => <AppList apps={apps} />} />
+          <Route exact path="/apps" render={() => <AppList apps={apps} db={db} updateRating={this.updateRating} />} />
         </Switch>
       </main>
     );

@@ -1,13 +1,14 @@
 import React from 'react';
-import { string, shape } from 'prop-types';
+import { string, shape, func } from 'prop-types';
 import { Grid, Link } from '@material-ui/core';
 
 import { RatingBar } from '..';
 
 const LargeAppcard = ({
   app: {
-    name, description, image, link,
+    name, description, image, link, rating, id,
   },
+  updateRating,
 }) => (
   <>
     <Grid container justify="center" spacing={5}>
@@ -16,7 +17,7 @@ const LargeAppcard = ({
       </Grid>
       <Grid item xs={9}>
         <h4 style={{ fontSize: '2rem', textAlign: 'left' }}>{name}</h4>
-        <div align="left"><RatingBar /></div>
+        <div align="left"><RatingBar rating={rating} updateRating={updateRating} id={id} /></div>
         <p style={{ fontSize: '1.5rem', textAlign: 'left' }}>{description}</p>
         <div style={{ textAlign: 'left' }}>
           <Link target="_blank" rel="noopener noreferrer" href={link}>
@@ -36,7 +37,9 @@ LargeAppcard.propTypes = {
     description: string.isRequired,
     image: string.isRequired,
     link: string.isRequired,
+    id: string.isRequired,
   }).isRequired,
+  updateRating: func.isRequired,
 };
 
 export default LargeAppcard;
