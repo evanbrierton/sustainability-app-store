@@ -25,3 +25,6 @@ yarn-error.log*
 # firebase
 /src/firebaseConfig.js
 /.firebase
+
+# google search console
+/public/googleebf13957a2792747.html
